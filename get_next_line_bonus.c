@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 14:49:57 by rpires-c          #+#    #+#             */
-/*   Updated: 2024/06/17 11:24:50 by rpires-c         ###   ########.fr       */
+/*   Created: 2024/06/17 11:38:01 by rpires-c          #+#    #+#             */
+/*   Updated: 2024/06/17 11:51:53 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,30 +50,30 @@ static void	*update_checkpoint(char *checkpoint, int fd)
 
 static char	*get_lines(int fd)
 {
-	static char	*rest = NULL;
-	char		*checkpoint;
+	static char	*rest [1024];
+	char		*checkpoint [1024];
 	int			len_checkpoint;
 	int			i;
 
 	i = 0;
 	len_checkpoint = 0;
-	checkpoint = rest;
-	checkpoint = update_checkpoint(checkpoint, fd);
-	if (checkpoint == NULL)
+	checkpoint[fd] = rest[fd];
+	checkpoint[fd] = update_checkpoint(checkpoint[fd], fd);
+	if (checkpoint[fd] == NULL)
 		return (NULL);
 	if (len_checkpoint == 0)
-		len_checkpoint = ft_strlen(checkpoint);
-	while (checkpoint[i] != '\n' && len_checkpoint > i)
+		len_checkpoint = ft_strlen(checkpoint[fd]);
+	while (checkpoint[fd][i] != '\n' && len_checkpoint > i)
 		i++;
-	if (i == 0 && checkpoint[i] != '\n')
-		return (memory_eraser(rest, checkpoint));
-	rest = copy(&checkpoint[i + 1], len_checkpoint - i, 0);
-	if (rest == NULL)
+	if (i == 0 && checkpoint[fd][i] != '\n')
+		return (memory_eraser(rest[fd], checkpoint[fd]));
+	rest[fd] = copy(&checkpoint[fd][i + 1], len_checkpoint - i, 0);
+	if (rest[fd] == NULL)
 	{
-		free(checkpoint);
+		free(checkpoint[fd]);
 		return (NULL);
 	}
-	return (copy(checkpoint, i + 1, 1));
+	return (copy(checkpoint[fd], i + 1, 1));
 }
 
 char	*get_next_line(int fd)
@@ -82,26 +82,3 @@ char	*get_next_line(int fd)
 		return (NULL);
 	return (get_lines(fd));
 }
-
-//  int main(void)
-// {
-// 	int id_arqi = open("teste.text", O_RDONLY);
-// 	char *ok;
-// 	ok =  get_next_line(id_arqi);
-// 	//printf("%s",ok);
-// 	//free(ok);
-// 	// ok =  get_next_line(id_arqi);
-// 	// //printf("%s",ok);
-// 	// free(ok);
-// 	//ok =  get_next_line(id_arqi);
-// 	//ok =  get_next_line(id_arqi);
-// 	//  printf("%s",ok);
-// 	//  ok =  get_next_line(id_arqi);
-// 	//  printf("%s",ok);
-// 	//printf("%s",ok);
-// 	 while(ok !=NULL)
-// 	 {	printf("-%s",ok);
-// 		free (ok);
-// 	 	ok = get_next_line(id_arqi);
-// 	 }
-//  }
