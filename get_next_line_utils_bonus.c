@@ -6,11 +6,11 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:37:30 by rpires-c          #+#    #+#             */
-/*   Updated: 2024/06/17 11:37:33 by rpires-c         ###   ########.fr       */
+/*   Updated: 2024/06/26 10:58:12 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_strlen(char *str)
 {
@@ -33,10 +33,8 @@ void	ft_bzero(void *tmp, size_t n)
 
 	i = 0;
 	str = (char *)tmp;
-	{
-		while (i < n)
-			str[i++] = '\0';
-	}
+	while (i < n)
+		str[i++] = '\0';
 }
 
 int	count_char(char *str)

@@ -6,11 +6,11 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:38:01 by rpires-c          #+#    #+#             */
-/*   Updated: 2024/06/17 11:51:53 by rpires-c         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:29:15 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*memory_eraser(char *array1, char *array2)
 {
